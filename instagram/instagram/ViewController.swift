@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 import FacebookLogin
 import FBSDKLoginKit
 class ViewController: UIViewController {
@@ -64,7 +65,6 @@ class ViewController: UIViewController {
     }()
     let signupButton : UIButton = {
         let button = UIButton(type: .system)
-//        button.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
         button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
         button.setTitle("Sign Up", for: .normal)
         button.layer.cornerRadius = 5
@@ -77,7 +77,6 @@ class ViewController: UIViewController {
     }()
     let FBLoginButton : UIButton = {
             let button = UIButton(type: .system)
-    //        button.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
             button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
             button.setTitle("FACEBOOK LOG IN", for: .normal)
             button.layer.cornerRadius = 5
@@ -111,9 +110,21 @@ class ViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { (user, err) in
             if err != nil{
                 print("Creat Failed")
+                return
             }
             if let user = user{
                 print("Success:", user.user.uid)
+                let uid = user.user.uid
+                let usernameValues = ["username": username]
+                let values = [uid: usernameValues]
+                Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
+                    if let err = err{
+                        print("failed to save user info into DB", err)
+                        return
+                    }
+                    print("successfully saved user to DB")
+                }
+                
             }
             
         }
