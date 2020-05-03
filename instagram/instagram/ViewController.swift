@@ -9,16 +9,36 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseStorage
 import FirebaseDatabase
 import FacebookLogin
 import FBSDKLoginKit
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     let buttonAddPhoto : UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "plus_photo"), for: .normal)
-        
+        button.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
         return button
     }()
+    @objc func handlePlusPhoto(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editImage = info[.editedImage] as? UIImage{
+            buttonAddPhoto.setImage(editImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        else if let originalImage = info[.originalImage] as? UIImage{
+            buttonAddPhoto.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        buttonAddPhoto.layer.cornerRadius = buttonAddPhoto.frame.width/2
+        buttonAddPhoto.layer.masksToBounds = true
+        buttonAddPhoto.layer.borderColor = UIColor.black.cgColor
+        buttonAddPhoto.layer.borderWidth = 3
+        dismiss(animated: true, completion: nil )
+    }
     let emailText : UITextField = {
         let tf = UITextField()
         tf.placeholder = "email"
@@ -112,20 +132,43 @@ class ViewController: UIViewController {
                 print("Creat Failed")
                 return
             }
-            if let user = user{
-                print("Success:", user.user.uid)
-                let uid = user.user.uid
-                let usernameValues = ["username": username]
-                let values = [uid: usernameValues]
-                Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
-                    if let err = err{
-                        print("failed to save user info into DB", err)
-                        return
-                    }
-                    print("successfully saved user to DB")
+            guard let image = self.buttonAddPhoto.imageView?.image else {return}
+            guard let uploadData = image.jpegData(compressionQuality: 0.5) else {return}
+            let filename = NSUUID().uuidString
+            
+            let storageRef = Storage.storage().reference().child("profile_images").child(filename)
+            storageRef.putData(uploadData, metadata: nil, completion: { (metadata, err) in
+                
+                if let err = err {
+                    print("Failed to upload profile image:", err)
+                    return
+                }
+                storageRef.downloadURL(completion: { (downloadURL, err) in
+                if let err = err {
+                    print("Failed to fetch downloadURL:", err)
+                    return
                 }
                 
-            }
+                guard let profileImageUrl = downloadURL?.absoluteString else { return }
+                
+                print("Successfully uploaded profile image:", profileImageUrl)
+                
+                if let user = user{
+                    print("Success:", user.user.uid)
+                    let uid = user.user.uid
+                    let dictionaryValues = ["username": username, "profileImageUrl": profileImageUrl]
+                    let values = [uid: dictionaryValues]
+                    Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
+                        if let err = err{
+                            print("failed to save user info into DB", err)
+                            return
+                        }
+                        print("successfully saved user to DB")
+                    }
+
+                }
+            })
+        })
             
         }
     }
