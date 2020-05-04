@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 class LoginController: UIViewController {
     let emailText : UITextField = {
         let tf = UITextField()
@@ -16,7 +17,7 @@ class LoginController: UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
-//        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
     let passwordText : UITextField = {
@@ -26,7 +27,7 @@ class LoginController: UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
-//        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
     let loginButton : UIButton = {
@@ -36,11 +37,24 @@ class LoginController: UIViewController {
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
-//        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         button.isEnabled = false
         return button
         
     }()
+    @objc fileprivate func handleLogin(){
+        guard let email = emailText.text else {return}
+        guard let password = passwordText.text else {return}
+        Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
+            if let err = err{
+                print("Failed to sign in with email or password", err)
+            }
+            print("Successfully logged in with user", user?.user.uid ?? "")
+            guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
+            mainTabBarController.setupViewControllers()
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     let logoContainerView: UIView = {
         let view = UIView()
         let logoImageView = UIImageView(image: UIImage(named: "Instagram_logo_white"))
@@ -70,6 +84,18 @@ class LoginController: UIViewController {
     @objc func handleShowSignUp() {
         let signUpController = SignUpController()
         navigationController?.pushViewController(signUpController, animated: true)
+    }
+    @objc func handleTextInputChange(){
+        let isFormValid = emailText.text?.count ?? 0 > 0 && passwordText.text?.count ?? 0 > 0
+        if isFormValid{
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        }
+        else{
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+        }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
