@@ -13,7 +13,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import FacebookLogin
 import FBSDKLoginKit
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     let buttonAddPhoto : UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "plus_photo"), for: .normal)
@@ -175,6 +175,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        view.backgroundColor = .white
         view.addSubview(buttonAddPhoto)
         buttonAddPhoto.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 150)
 //        buttonAddPhoto.heightAnchor.constraint(equalToConstant: 150).isActive = true
