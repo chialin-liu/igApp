@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Photos
 class PhotoSelectorController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     let cellId = "cellId"
     let headerId = "headerId"
@@ -17,6 +18,21 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         setupNavigationButtons()
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        fetchPhotos()
+    }
+    func fetchPhotos(){
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.fetchLimit = 10
+        let allPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        allPhotos.enumerateObjects { (asset, count, stop) in
+            print(asset)
+            print("fetch photos")
+            let imageManager = PHImageManager.default()
+            let targetSize = CGSize(width: 350, height: 350)
+            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFit, options: nil) { (image, info) in
+                print(image)
+            }
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 1, left: 0, bottom: 0, right: 0)
