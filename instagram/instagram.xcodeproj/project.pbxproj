@@ -20,6 +20,7 @@
 		F34928D5245F039A00EF029D /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928D4245F039A00EF029D /* UserProfileHeader.swift */; };
 		F34928D8245FE5D300EF029D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928D7245FE5D300EF029D /* LoginController.swift */; };
 		F34928DB2460E0E600EF029D /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928DA2460E0E600EF029D /* PhotoSelectorController.swift */; };
+		F34928DD2461765F00EF029D /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928DC2461765F00EF029D /* PhotoSelectorCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		F34928D4245F039A00EF029D /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		F34928D7245FE5D300EF029D /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		F34928DA2460E0E600EF029D /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
+		F34928DC2461765F00EF029D /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		FB413370CC55AFC5AC5B543C /* Pods-instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram.release.xcconfig"; path = "Target Support Files/Pods-instagram/Pods-instagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				F34928DA2460E0E600EF029D /* PhotoSelectorController.swift */,
+				F34928DC2461765F00EF029D /* PhotoSelectorCell.swift */,
 			);
 			path = AddPhoto;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3492875245D132000EF029D /* SignUpController.swift in Sources */,
+				F34928DD2461765F00EF029D /* PhotoSelectorCell.swift in Sources */,
 				F3492871245D132000EF029D /* AppDelegate.swift in Sources */,
 				F349288C245ECD0200EF029D /* MainTabBarController.swift in Sources */,
 				F34928D5245F039A00EF029D /* UserProfileHeader.swift in Sources */,
