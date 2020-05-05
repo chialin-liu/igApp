@@ -19,6 +19,7 @@
 		F34928D2245EDAFA00EF029D /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928D1245EDAFA00EF029D /* UserProfileController.swift */; };
 		F34928D5245F039A00EF029D /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928D4245F039A00EF029D /* UserProfileHeader.swift */; };
 		F34928D8245FE5D300EF029D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928D7245FE5D300EF029D /* LoginController.swift */; };
+		F34928DB2460E0E600EF029D /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928DA2460E0E600EF029D /* PhotoSelectorController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		F34928D1245EDAFA00EF029D /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		F34928D4245F039A00EF029D /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		F34928D7245FE5D300EF029D /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		F34928DA2460E0E600EF029D /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		FB413370CC55AFC5AC5B543C /* Pods-instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram.release.xcconfig"; path = "Target Support Files/Pods-instagram/Pods-instagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 		F349286F245D132000EF029D /* instagram */ = {
 			isa = PBXGroup;
 			children = (
+				F34928D92460E0B000EF029D /* AddPhoto */,
 				F34928D6245FE5BA00EF029D /* Login */,
 				F34928D3245F037C00EF029D /* UserProfile */,
 				F3492884245D53EC00EF029D /* Utils */,
@@ -120,6 +123,14 @@
 				F3492874245D132000EF029D /* SignUpController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		F34928D92460E0B000EF029D /* AddPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				F34928DA2460E0E600EF029D /* PhotoSelectorController.swift */,
+			);
+			path = AddPhoto;
 			sourceTree = "<group>";
 		};
 		F7FD3AAE332FBFCA130C4650 /* Frameworks */ = {
@@ -253,6 +264,7 @@
 				F34928D2245EDAFA00EF029D /* UserProfileController.swift in Sources */,
 				F3492886245D542500EF029D /* Extensions.swift in Sources */,
 				F34928D8245FE5D300EF029D /* LoginController.swift in Sources */,
+				F34928DB2460E0E600EF029D /* PhotoSelectorController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
