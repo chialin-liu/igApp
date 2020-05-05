@@ -13,34 +13,56 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     let cellId = "cellId"
     let headerId = "headerId"
     var images = [UIImage]()
+    var selectedImage: UIImage?
+    var assets = [PHAsset]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .green
+        collectionView.backgroundColor = .white
         setupNavigationButtons()
         collectionView.register(PhotoSelectorCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        collectionView.register(PhotoSelectorHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         fetchPhotos()
     }
-    func fetchPhotos(){
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedImage = images[indexPath.item]
+        self.collectionView.reloadData()
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+    }
+    fileprivate func assetsFetchOptions() -> PHFetchOptions{
         let fetchOptions = PHFetchOptions()
-        fetchOptions.fetchLimit = 10
+        fetchOptions.fetchLimit = 30
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         fetchOptions.sortDescriptors = [sortDescriptor]
-        let allPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-        allPhotos.enumerateObjects { (asset, count, stop) in
+        return fetchOptions
+    }
+    func fetchPhotos(){
+        let allPhotos = PHAsset.fetchAssets(with: .image, options: assetsFetchOptions())
+        DispatchQueue.global(qos: .background).async {
+            allPhotos.enumerateObjects { (asset, count, stop) in
 
-            let imageManager = PHImageManager.default()
-            let targetSize = CGSize(width: 350, height: 350)
-            let options = PHImageRequestOptions()
-            options.isSynchronous = true
-            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFit, options: options) { (image, info) in
-                guard let image = image else {return}
-                self.images.append(image)
-                if count == allPhotos.count - 1{
-                    self.collectionView.reloadData()
+                let imageManager = PHImageManager.default()
+                let targetSize = CGSize(width: 200, height: 200)
+                let options = PHImageRequestOptions()
+                options.isSynchronous = true
+                imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFit, options: options) { (image, info) in
+                    guard let image = image else {return}
+                    self.images.append(image)
+                    self.assets.append(asset)
+                    if self.selectedImage == nil{
+                        self.selectedImage = image
+                    }
+                    if count == allPhotos.count - 1{
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                        }
+                        
+                    }
                 }
             }
         }
+        
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 1, left: 0, bottom: 0, right: 0)
@@ -49,9 +71,22 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         let width = view.frame.width
         return CGSize(width: width, height: width)
     }
+    var header: PhotoSelectorHeader?
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
-        header.backgroundColor = .red
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
+        self.header = header
+        header.photoImageView.image = selectedImage
+        if let selectedImage = selectedImage{
+            if let index = self.images.firstIndex(of: selectedImage){
+                let selectedAsset = self.assets[index]
+                let imageManager = PHImageManager.default()
+                let targetSize = CGSize(width: 600, height: 600)
+                imageManager.requestImage(for: selectedAsset, targetSize: targetSize, contentMode: .default, options: nil) { (image, info) in
+                    header.photoImageView.image = image
+                }
+            }
+        }
+        
         return header
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -81,7 +116,9 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         dismiss(animated: true, completion: nil)
     }
     @objc func handleNext(){
-        
+        let sharePhotoController = SharePhotoController()
+        sharePhotoController.selectedImage = self.header?.photoImageView.image
+        navigationController?.pushViewController(sharePhotoController, animated: true)
     }
     override var prefersStatusBarHidden: Bool{
         return true
