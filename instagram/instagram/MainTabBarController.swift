@@ -38,7 +38,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     func setupViewControllers(){
         //home
-        let homeNavController = templateNavController(unselectedImage: UIImage(named: "home_unselected") ?? UIImage(), selectedImage: UIImage(named: "home_selected") ?? UIImage(), rootViewController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout()))
+        let homeNavController = templateNavController(unselectedImage: UIImage(named: "home_unselected") ?? UIImage(), selectedImage: UIImage(named: "home_selected") ?? UIImage(), rootViewController: HomeController(collectionViewLayout: UICollectionViewFlowLayout()))
         //search
         let searchNavController = templateNavController(unselectedImage: UIImage(named: "search_unselected") ?? UIImage(), selectedImage: UIImage(named: "search_selected") ?? UIImage())
         //plus
