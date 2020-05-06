@@ -26,6 +26,7 @@
 		F34928E42462204A00EF029D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928E32462204A00EF029D /* Post.swift */; };
 		F34928E62462261400EF029D /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928E52462261400EF029D /* UserProfilePhotoCell.swift */; };
 		F34928E82462277300EF029D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928E72462277300EF029D /* User.swift */; };
+		F34928EA246232CE00EF029D /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928E9246232CE00EF029D /* CustomImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		F34928E32462204A00EF029D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F34928E52462261400EF029D /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
 		F34928E72462277300EF029D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F34928E9246232CE00EF029D /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		FB413370CC55AFC5AC5B543C /* Pods-instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram.release.xcconfig"; path = "Target Support Files/Pods-instagram/Pods-instagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 		F349286F245D132000EF029D /* instagram */ = {
 			isa = PBXGroup;
 			children = (
+				F34928EB2462411600EF029D /* Home */,
 				F34928E22462202D00EF029D /* Models */,
 				F34928D92460E0B000EF029D /* AddPhoto */,
 				F34928D6245FE5BA00EF029D /* Login */,
@@ -116,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				F3492885245D542500EF029D /* Extensions.swift */,
+				F34928E9246232CE00EF029D /* CustomImageView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -157,6 +161,13 @@
 				F34928E72462277300EF029D /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F34928EB2462411600EF029D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		F7FD3AAE332FBFCA130C4650 /* Frameworks */ = {
@@ -287,6 +298,7 @@
 				F3492875245D132000EF029D /* SignUpController.swift in Sources */,
 				F34928DD2461765F00EF029D /* PhotoSelectorCell.swift in Sources */,
 				F34928E42462204A00EF029D /* Post.swift in Sources */,
+				F34928EA246232CE00EF029D /* CustomImageView.swift in Sources */,
 				F3492871245D132000EF029D /* AppDelegate.swift in Sources */,
 				F34928E62462261400EF029D /* UserProfilePhotoCell.swift in Sources */,
 				F34928E82462277300EF029D /* User.swift in Sources */,
