@@ -9,9 +9,17 @@
 import Foundation
 import UIKit
 class HomePostCell: UICollectionViewCell {
-    let photoImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.backgroundColor = .blue
+    var post: Post? {
+        didSet{
+            guard let imageUrl = post?.imageUrl else {return}
+            photoImageView.loadImage(urlString: imageUrl)
+        }
+    }
+    let photoImageView: CustomImageView = {
+        let iv = CustomImageView()
+        iv.backgroundColor = .white
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
         return iv
     }()
     override init(frame: CGRect) {
