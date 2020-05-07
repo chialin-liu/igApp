@@ -77,7 +77,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             }
             for (key, value) in dictionaries{
                 guard let dictionary = value as? [String: Any] else {return}
-                let post = Post(user: user, dictionary: dictionary)
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = key
                 self.posts.append(post)
                 
             }
@@ -112,6 +113,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         print("Message from homeVC")
         print(post.caption)
         let commentController = CommentController(collectionViewLayout: UICollectionViewLayout())
+        commentController.post = post
         navigationController?.pushViewController(commentController, animated: true)
     }
 }
