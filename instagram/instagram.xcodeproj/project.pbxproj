@@ -31,6 +31,8 @@
 		F34928EF2462433200EF029D /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928EE2462433200EF029D /* HomePostCell.swift */; };
 		F34928F2246312F300EF029D /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928F1246312F300EF029D /* UserSearchController.swift */; };
 		F34928F424631B2700EF029D /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928F324631B2700EF029D /* UserSearchCell.swift */; };
+		F34928F7246433DE00EF029D /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928F6246433DD00EF029D /* CameraController.swift */; };
+		F34928F9246458B900EF029D /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928F8246458B900EF029D /* CommentController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		F34928EE2462433200EF029D /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		F34928F1246312F300EF029D /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		F34928F324631B2700EF029D /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
+		F34928F6246433DD00EF029D /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		F34928F8246458B900EF029D /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		FB413370CC55AFC5AC5B543C /* Pods-instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram.release.xcconfig"; path = "Target Support Files/Pods-instagram/Pods-instagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +110,7 @@
 		F349286F245D132000EF029D /* instagram */ = {
 			isa = PBXGroup;
 			children = (
+				F34928F5246433CA00EF029D /* Camera */,
 				F34928F0246312CA00EF029D /* Search */,
 				F34928EB2462411600EF029D /* Home */,
 				F34928E22462202D00EF029D /* Models */,
@@ -177,6 +182,7 @@
 			children = (
 				F34928EC2462415600EF029D /* HomeController.swift */,
 				F34928EE2462433200EF029D /* HomePostCell.swift */,
+				F34928F8246458B900EF029D /* CommentController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -188,6 +194,14 @@
 				F34928F324631B2700EF029D /* UserSearchCell.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		F34928F5246433CA00EF029D /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				F34928F6246433DD00EF029D /* CameraController.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		F7FD3AAE332FBFCA130C4650 /* Frameworks */ = {
@@ -328,6 +342,8 @@
 				F34928D5245F039A00EF029D /* UserProfileHeader.swift in Sources */,
 				F34928D2245EDAFA00EF029D /* UserProfileController.swift in Sources */,
 				F3492886245D542500EF029D /* Extensions.swift in Sources */,
+				F34928F9246458B900EF029D /* CommentController.swift in Sources */,
+				F34928F7246433DE00EF029D /* CameraController.swift in Sources */,
 				F34928ED2462415600EF029D /* HomeController.swift in Sources */,
 				F34928D8245FE5D300EF029D /* LoginController.swift in Sources */,
 				F34928DF24617D9D00EF029D /* PhotoSelectorHeader.swift in Sources */,

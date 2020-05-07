@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomePostCellDelegate {
     let cellId = "cellId"
     var posts = [Post]()
     override func viewDidLoad() {
@@ -55,6 +55,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     func setupNavigationItems(){
         navigationItem.titleView = UIImageView(image: UIImage(named: "logo2"))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "camera3")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleCamera))
+    }
+    @objc fileprivate func handleCamera(){
+        let cameraController = CameraController()
+        present(cameraController, animated: true, completion: nil)
     }
     fileprivate func fetchPosts(){
         guard let uid = Auth.auth().currentUser?.uid else {return}
@@ -100,7 +105,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         if indexPath.item < posts.count{
             cell.post = posts[indexPath.item]
         }
-        
+        cell.delegate = self
         return cell
+    }
+    func didTapComment(post: Post) {
+        print("Message from homeVC")
+        print(post.caption)
+        let commentController = CommentController(collectionViewLayout: UICollectionViewLayout())
+        navigationController?.pushViewController(commentController, animated: true)
     }
 }
