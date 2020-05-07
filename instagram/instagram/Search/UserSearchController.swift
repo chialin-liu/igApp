@@ -45,6 +45,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         //TBD what the reason?
         collectionView.alwaysBounceVertical = true
         //TBD end
+        collectionView.keyboardDismissMode = .onDrag
         fetchUsers()
     }
     fileprivate func fetchUsers(){
@@ -52,6 +53,9 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else {return}
             for(key, value) in dictionaries{
+                if key == Auth.auth().currentUser?.uid{
+                    continue
+                }
                 guard let dictionary = value as? [String: Any] else {return}
                 let user = User(uid: key, dictionary: dictionary)
                 self.users.append(user)
@@ -77,5 +81,19 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserSearchCell
         cell.user = filteredUsers[indexPath.item]
         return cell
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchBar.isHidden = false
+    }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        searchBar.isHidden = true
+        //TBD
+        searchBar.resignFirstResponder()
+        //end
+        let user = filteredUsers[indexPath.item]
+        let userProfileController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+        userProfileController.userId = user.uid
+        navigationController?.pushViewController(userProfileController, animated: true)
     }
 }

@@ -18,7 +18,6 @@ class UserSearchCell: UICollectionViewCell {
     }
     let profileImageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.backgroundColor = .green
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 50 / 2
