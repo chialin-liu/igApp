@@ -17,8 +17,27 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
         collectionView.backgroundColor = .white
         collectionView.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
+        let refresh
         setupNavigationItems()
         fetchPosts()
+        fetchFollowingUserIds()
+    }
+    fileprivate func fetchFollowingUserIds(){
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        Database.database().reference().child("following").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let userIdsDictionary = snapshot.value as? [String: Any] else{ return }
+            for(key, value) in userIdsDictionary{
+                Database.fetchUserWithUID(uid: key) { (user) in
+                    self.fetchPostsWithUser(user: user)
+                }
+            }
+            
+            
+        }) { (err) in
+            print("Failed to fetch followers", err)
+        }
     }
     func setupNavigationItems(){
         navigationItem.titleView = UIImageView(image: UIImage(named: "logo2"))
@@ -41,6 +60,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 let post = Post(user: user, dictionary: dictionary)
                 self.posts.append(post)
                 
+            }
+            self.posts.sort { (p1, p2) -> Bool in
+                return p1.creationDate.compare(p2.creationDate) == .orderedDescending
             }
             self.collectionView.reloadData()
         }) { (err) in
