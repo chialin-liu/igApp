@@ -112,8 +112,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func didTapComment(post: Post) {
         print("Message from homeVC")
         print(post.caption)
-        let commentController = CommentController(collectionViewLayout: UICollectionViewLayout())
+        let commentController = CommentController(collectionViewLayout: UICollectionViewFlowLayout())
         commentController.post = post
         navigationController?.pushViewController(commentController, animated: true)
+//        present(commentController, animated: true, completion: nil)
     }
 }
