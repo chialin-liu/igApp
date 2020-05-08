@@ -10,7 +10,12 @@ import Foundation
 import UIKit
 import Firebase
 import FirebaseDatabase
+protocol UserProfileHeaderDelegate {
+    func didChangeToListView()
+    func didChangeToGridView()
+}
 class UserProfileHeader: UICollectionViewCell {
+    var delegate: UserProfileHeaderDelegate?
     var user: User?{
         didSet{
             guard let profileImageUrl = user?.profileImageUrl else {return}
@@ -79,15 +84,22 @@ class UserProfileHeader: UICollectionViewCell {
        self.editProfileFollowButton.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
        self.editProfileFollowButton.setTitleColor(.white, for: .normal)
     }
-    let gridButton: UIButton = {
+    lazy var gridButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "grid"), for: .normal)
+        button.addTarget(self, action: #selector(handleChangeToGridView), for: .touchUpInside)
         return button
     }()
-    let listButton: UIButton = {
+    @objc func handleChangeToGridView(){
+        gridButton.tintColor = .mainBlue()
+        listButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        delegate?.didChangeToGridView()
+    }
+    lazy var listButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "list"), for: .normal)
         button.tintColor = UIColor(white: 0, alpha: 0.2)
+        button.addTarget(self, action: #selector(handleChangeToListView), for: .touchUpInside)
         return button
     }()
     let bookmarkButton: UIButton = {
@@ -96,6 +108,11 @@ class UserProfileHeader: UICollectionViewCell {
         button.tintColor = UIColor(white: 0, alpha: 0.2)
         return button
     }()
+    @objc func handleChangeToListView(){
+        listButton.tintColor = .mainBlue()
+        gridButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        delegate?.didChangeToListView()
+    }
     let usernameLabel: UILabel = {
         let label = UILabel()
         label.text = "username"

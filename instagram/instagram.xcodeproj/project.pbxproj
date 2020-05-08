@@ -35,6 +35,7 @@
 		F34928FF2464DC0200EF029D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34928FE2464DC0200EF029D /* Comment.swift */; };
 		F34929072464FBE600EF029D /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34929062464FBE600EF029D /* CommentController.swift */; };
 		F34929092464FC4100EF029D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34929082464FC4100EF029D /* CommentCell.swift */; };
+		F349290C2465B48600EF029D /* UserProfileGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349290B2465B48600EF029D /* UserProfileGridCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		F34928FE2464DC0200EF029D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		F34929062464FBE600EF029D /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		F34929082464FC4100EF029D /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		F349290B2465B48600EF029D /* UserProfileGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileGridCell.swift; sourceTree = "<group>"; };
 		FB413370CC55AFC5AC5B543C /* Pods-instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram.release.xcconfig"; path = "Target Support Files/Pods-instagram/Pods-instagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +150,7 @@
 				F34928D4245F039A00EF029D /* UserProfileHeader.swift */,
 				F34928D1245EDAFA00EF029D /* UserProfileController.swift */,
 				F34928E52462261400EF029D /* UserProfilePhotoCell.swift */,
+				F349290B2465B48600EF029D /* UserProfileGridCell.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				F34928D2245EDAFA00EF029D /* UserProfileController.swift in Sources */,
 				F3492886245D542500EF029D /* Extensions.swift in Sources */,
 				F34928F7246433DE00EF029D /* CameraController.swift in Sources */,
+				F349290C2465B48600EF029D /* UserProfileGridCell.swift in Sources */,
 				F34928ED2462415600EF029D /* HomeController.swift in Sources */,
 				F34928D8245FE5D300EF029D /* LoginController.swift in Sources */,
 				F34928DF24617D9D00EF029D /* PhotoSelectorHeader.swift in Sources */,
