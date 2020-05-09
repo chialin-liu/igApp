@@ -17,6 +17,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         let sb = UISearchBar()
         sb.placeholder = "Enter username"
         sb.barTintColor = .gray
+        sb.tintColor = .black
         //TBD, no idea why?
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230)
         //TBD end

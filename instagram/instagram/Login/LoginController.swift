@@ -13,7 +13,7 @@ class LoginController: UIViewController {
     let emailText : UITextField = {
         let tf = UITextField()
         tf.placeholder = "email"
-        
+        tf.textColor = .black
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
@@ -23,6 +23,7 @@ class LoginController: UIViewController {
     let passwordText : UITextField = {
         let tf = UITextField()
         tf.placeholder = "Password"
+        tf.textColor = .black
         tf.isSecureTextEntry = true
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect

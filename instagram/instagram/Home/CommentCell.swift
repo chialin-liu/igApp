@@ -30,10 +30,12 @@ class CommentCell: UICollectionViewCell {
         return iv
     }()
     let textView: UITextView = {
-            let textView = UITextView()
-            textView.font = UIFont.systemFont(ofSize: 14)
-            textView.isScrollEnabled = false
-            return textView
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.backgroundColor = .white
+        textView.textColor = .black
+        textView.isScrollEnabled = false
+        return textView
     }()
     
     override init(frame: CGRect) {

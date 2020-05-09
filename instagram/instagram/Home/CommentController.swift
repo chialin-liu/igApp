@@ -117,6 +117,7 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
     
     let commentTextField: UITextField = {
         let textField = UITextField()
+        textField.textColor = .black
         textField.placeholder = "Enter Comment"
         return textField
     }()

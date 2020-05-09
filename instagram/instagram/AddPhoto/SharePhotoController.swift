@@ -31,6 +31,8 @@ class SharePhotoController: UIViewController {
     }()
     let textView: UITextView = {
         let tv = UITextView()
+        tv.textColor = .black
+        tv.backgroundColor = .white
         tv.font = UIFont.systemFont(ofSize: 14)
         return tv
     }()
