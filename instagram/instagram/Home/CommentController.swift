@@ -67,7 +67,6 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         
         let targetSize = CGSize(width: view.frame.width, height: 1000)
         let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
-        
         let height = max(40 + 8 + 8, estimatedSize.height)
         return CGSize(width: view.frame.width, height: height)
     }
@@ -75,18 +74,15 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         return 0
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CommentCell
-        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CommentCell else {return UICollectionViewCell()}
         cell.comment = self.comments[indexPath.item]
-        
         return cell
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
@@ -121,34 +117,25 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         textField.placeholder = "Enter Comment"
         return textField
     }()
-    
     @objc func handleSubmit() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        
         print("post id:", self.post?.id ?? "")
-        
         print("Inserting comment:", commentTextField.text ?? "")
-        
         let postId = self.post?.id ?? ""
-        let values = ["text": commentTextField.text ?? "", "creationDate": Date().timeIntervalSince1970, "uid": uid] as [String : Any]
-        
-        Database.database().reference().child("comments").child(postId).childByAutoId().updateChildValues(values) { (err, ref) in
-            
+        let values = ["text": commentTextField.text ?? "", "creationDate": Date().timeIntervalSince1970, "uid": uid] as [String: Any]
+        Database.database().reference().child("comments").child(postId).childByAutoId().updateChildValues(values) { (err, _) in
             if let err = err {
                 print("Failed to insert comment:", err)
                 return
             }
-            
             print("Successfully inserted comment.")
         }
     }
-    
     override var inputAccessoryView: UIView? {
         get {
             return containerView
         }
     }
-    
     override var canBecomeFirstResponder: Bool {
         return true
     }

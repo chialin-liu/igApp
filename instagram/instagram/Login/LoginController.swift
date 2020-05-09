@@ -13,6 +13,9 @@ class LoginController: UIViewController {
     let emailText : UITextField = {
         let tf = UITextField()
         tf.placeholder = "email"
+        tf.attributedPlaceholder = NSAttributedString(string:
+        "Email信箱", attributes:
+            [NSAttributedString.Key.foregroundColor:UIColor.lightGray])
         tf.textColor = .black
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
@@ -22,7 +25,9 @@ class LoginController: UIViewController {
     }()
     let passwordText : UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Password"
+        tf.attributedPlaceholder = NSAttributedString(string:
+        "Password密碼", attributes:
+            [NSAttributedString.Key.foregroundColor:UIColor.lightGray])
         tf.textColor = .black
         tf.isSecureTextEntry = true
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
@@ -34,7 +39,7 @@ class LoginController: UIViewController {
     let loginButton : UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Login登入帳戶", for: .normal)
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
@@ -70,9 +75,9 @@ class LoginController: UIViewController {
     let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
 //        button.setTitle("Don't have an account? Sign up.", for: .normal)
-        let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        let attributedTitle = NSMutableAttributedString(string: "Don't have an account?沒有註冊過  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         
-        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)
+        attributedTitle.append(NSAttributedString(string: "Sign Up註冊", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)
             ]))
         
         button.setAttributedTitle(attributedTitle, for: .normal)

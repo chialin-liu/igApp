@@ -41,7 +41,9 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     }
     let emailText : UITextField = {
         let tf = UITextField()
-        tf.placeholder = "email"
+        tf.attributedPlaceholder = NSAttributedString(string:
+        "Email信箱", attributes:
+            [NSAttributedString.Key.foregroundColor:UIColor.lightGray])
         tf.textColor = .black
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
@@ -64,7 +66,9 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     }
     let usernameText : UITextField = {
         let tf = UITextField()
-        tf.placeholder = "UserName"
+        tf.attributedPlaceholder = NSAttributedString(string:
+        "Username使用者名字", attributes:
+            [NSAttributedString.Key.foregroundColor:UIColor.lightGray])
         tf.textColor = .black
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
@@ -74,7 +78,9 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     }()
     let passwordText : UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Password"
+        tf.attributedPlaceholder = NSAttributedString(string:
+        "Password密碼", attributes:
+            [NSAttributedString.Key.foregroundColor:UIColor.lightGray])
         tf.isSecureTextEntry = true
         tf.textColor = .black
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
@@ -86,7 +92,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     let signupButton : UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
-        button.setTitle("Sign Up", for: .normal)
+        button.setTitle("Sign Up註冊", for: .normal)
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
@@ -98,9 +104,9 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     let alreadyHaveAccountButton: UIButton = {
             let button = UIButton(type: .system)
     //        button.setTitle("Don't have an account? Sign up.", for: .normal)
-            let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+            let attributedTitle = NSMutableAttributedString(string: "Already have an account?已經擁有帳戶嗎  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
             
-            attributedTitle.append(NSAttributedString(string: "Login", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)
+            attributedTitle.append(NSAttributedString(string: "Login登入", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)
                 ]))
             
             button.setAttributedTitle(attributedTitle, for: .normal)
@@ -110,27 +116,27 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     @objc fileprivate func handleAlreadyHaveAccount(){
         navigationController?.popViewController(animated: true)
     }
-    let FBLoginButton : UIButton = {
-            let button = UIButton(type: .system)
-            button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
-            button.setTitle("FACEBOOK LOG IN", for: .normal)
-            button.layer.cornerRadius = 5
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-            button.setTitleColor(.white, for: .normal)
-            button.addTarget(self, action: #selector(fbLogin), for: .touchUpInside)
-            return button
-            
-        }()
-    @objc func fbLogin(){
-        let manager = LoginManager()
-        manager.logIn { (result) in
-           if case LoginResult.success(granted: _, declined: _, token: _) = result {
-                  print("login ok")
-              } else {
-                  print("login fail")
-              }
-        }
-    }
+//    let FBLoginButton : UIButton = {
+//            let button = UIButton(type: .system)
+//            button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+//            button.setTitle("FACEBOOK LOG IN", for: .normal)
+//            button.layer.cornerRadius = 5
+//            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+//            button.setTitleColor(.white, for: .normal)
+//            button.addTarget(self, action: #selector(fbLogin), for: .touchUpInside)
+//            return button
+//
+//        }()
+//    @objc func fbLogin(){
+//        let manager = LoginManager()
+//        manager.logIn { (result) in
+//           if case LoginResult.success(granted: _, declined: _, token: _) = result {
+//                  print("login ok")
+//              } else {
+//                  print("login fail")
+//              }
+//        }
+//    }
     @objc func handleSignUp(){
         guard let email = emailText.text, email.count > 0 else {
             return
@@ -205,20 +211,20 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         setupInputFields()
         //check FB login
-        if let accessToken = AccessToken.current {
-           Profile.loadCurrentProfile { (profile, error) in
-               if let profile = profile {
-                  print(profile.name)
-                  print(profile.imageURL(forMode: .square, size: CGSize(width: 300, height: 300)))
-               }
-           }
-        } else {
-            print("not login")
-        }
+//        if let accessToken = AccessToken.current {
+//           Profile.loadCurrentProfile { (profile, error) in
+//               if let profile = profile {
+//                  print(profile.name)
+//                  print(profile.imageURL(forMode: .square, size: CGSize(width: 300, height: 300)))
+//               }
+//           }
+//        } else {
+//            print("not login")
+//        }
         
     }
     func setupInputFields(){
-        let stackView = UIStackView(arrangedSubviews: [emailText, usernameText, passwordText, signupButton, FBLoginButton])
+        let stackView = UIStackView(arrangedSubviews: [emailText, usernameText, passwordText, signupButton])
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing = 10

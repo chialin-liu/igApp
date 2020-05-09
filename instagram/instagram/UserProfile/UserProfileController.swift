@@ -26,14 +26,14 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     let cellId = "cellId"
     var posts = [Post]()
     var userId: String?
-    let UserProfileGridCellId = "UserProfileGridCellId"
+    let userProfileGridCellId = "UserProfileGridCellId"
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
         
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.register(UserProfileGridCell.self, forCellWithReuseIdentifier: UserProfileGridCellId)
+        collectionView.register(UserProfileGridCell.self, forCellWithReuseIdentifier: userProfileGridCellId)
         setupLogOutButton()
         fetchUser()
         
@@ -77,17 +77,14 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if isGridView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? UserProfilePhotoCell else {return UICollectionViewCell()}
+            cell.post = posts[indexPath.item]
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: userProfileGridCellId, for: indexPath) as? UserProfileGridCell else {return UICollectionViewCell()}
             cell.post = posts[indexPath.item]
             return cell
         }
-        else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserProfileGridCellId, for: indexPath) as! UserProfileGridCell
-            cell.post = posts[indexPath.item]
-            return cell
-        }
-        
-        
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1

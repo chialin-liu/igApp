@@ -79,7 +79,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         return filteredUsers.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserSearchCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? UserSearchCell else {return UICollectionViewCell()}
         cell.user = filteredUsers[indexPath.item]
         return cell
     }

@@ -44,7 +44,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         Database.database().reference().child("following").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let userIdsDictionary = snapshot.value as? [String: Any] else{ return }
-            for(key, value) in userIdsDictionary{
+            for(key, _) in userIdsDictionary{
                 Database.fetchUserWithUID(uid: key) { (user) in
                     self.fetchPostsWithUser(user: user)
                 }
@@ -117,8 +117,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return posts.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
-        if indexPath.item < posts.count{
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? HomePostCell else {return UICollectionViewCell()}
+        if indexPath.item < posts.count {
             cell.post = posts[indexPath.item]
         }
         cell.delegate = self
