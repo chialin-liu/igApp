@@ -56,12 +56,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
     }
     func setupNavigationItems(){
+        navigationController?.navigationBar.barTintColor = .lightGray
         navigationItem.titleView = UIImageView(image: UIImage(named: "logo2"))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "camera3")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleCamera))
     }
     @objc fileprivate func handleCamera(){
         let cameraController = CameraController()
-        present(cameraController, animated: true, completion: nil)
+        navigationController?.pushViewController(cameraController, animated: true)
+//        present(cameraController, animated: true, completion: nil)
     }
     fileprivate func fetchPosts(){
         guard let uid = Auth.auth().currentUser?.uid else {return}

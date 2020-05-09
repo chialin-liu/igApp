@@ -53,6 +53,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         userProfileNavController.tabBarItem.image = UIImage(named: "profile_unselected")
         userProfileNavController.tabBarItem.selectedImage = UIImage(named: "profile_selected")
         tabBar.tintColor = .black
+        tabBar.barTintColor = .white
         viewControllers = [homeNavController,
                            searchNavController,
                            plusNavController,
