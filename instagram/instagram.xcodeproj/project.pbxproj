@@ -233,6 +233,7 @@
 				F349286A245D131F00EF029D /* Frameworks */,
 				F349286B245D131F00EF029D /* Resources */,
 				B80289070930EE2869C1967C /* [CP] Embed Pods Frameworks */,
+				F3492938246769D700EF029D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -329,6 +330,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-instagram/Pods-instagram-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F3492938246769D700EF029D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
