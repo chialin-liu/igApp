@@ -36,6 +36,7 @@
 		F34929072464FBE600EF029D /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34929062464FBE600EF029D /* CommentController.swift */; };
 		F34929092464FC4100EF029D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34929082464FC4100EF029D /* CommentCell.swift */; };
 		F349290C2465B48600EF029D /* UserProfileGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349290B2465B48600EF029D /* UserProfileGridCell.swift */; };
+		F349293A246787E000EF029D /* PreviewPhotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3492939246787E000EF029D /* PreviewPhotoContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		F34929062464FBE600EF029D /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		F34929082464FC4100EF029D /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		F349290B2465B48600EF029D /* UserProfileGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileGridCell.swift; sourceTree = "<group>"; };
+		F3492939246787E000EF029D /* PreviewPhotoContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainerView.swift; sourceTree = "<group>"; };
 		FB413370CC55AFC5AC5B543C /* Pods-instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram.release.xcconfig"; path = "Target Support Files/Pods-instagram/Pods-instagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				F34928F6246433DD00EF029D /* CameraController.swift */,
+				F3492939246787E000EF029D /* PreviewPhotoContainerView.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				F34928EA246232CE00EF029D /* CustomImageView.swift in Sources */,
 				F3492871245D132000EF029D /* AppDelegate.swift in Sources */,
 				F34928E62462261400EF029D /* UserProfilePhotoCell.swift in Sources */,
+				F349293A246787E000EF029D /* PreviewPhotoContainerView.swift in Sources */,
 				F34928E82462277300EF029D /* User.swift in Sources */,
 				F349288C245ECD0200EF029D /* MainTabBarController.swift in Sources */,
 				F34929092464FC4100EF029D /* CommentCell.swift in Sources */,

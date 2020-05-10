@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 import AVFoundation
-class CameraController: UIViewController {
+import Photos
+class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCaptureSession()
@@ -41,7 +42,32 @@ class CameraController: UIViewController {
     
     @objc func handleCapturePhoto() {
         print("Capturing photo...")
+        let settings = AVCapturePhotoSettings()
+        guard let previewFormatType = settings.availablePreviewPhotoPixelFormatTypes.first else { return }
+        
+        settings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewFormatType]
+        output.capturePhoto(with: settings, delegate: self)
     }
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+
+        let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer!)
+
+        let previewImage = UIImage(data: imageData!)
+
+        let containerView = PreviewPhotoContainerView()
+        containerView.previewImageView.image = previewImage
+        view.addSubview(containerView)
+        containerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+//        let previewImageView = UIImageView(image: previewImage)
+//        view.addSubview(previewImageView)
+//        previewImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+    }
+
+    let output = AVCapturePhotoOutput()
     fileprivate func setupCaptureSession(){
         let captureSession = AVCaptureSession()
         //set input
@@ -56,7 +82,6 @@ class CameraController: UIViewController {
             print("Could not setup camera input:", err)
         }
         //2. setup outputs
-        let output = AVCapturePhotoOutput()
         if captureSession.canAddOutput(output) {
             captureSession.addOutput(output)
         }
