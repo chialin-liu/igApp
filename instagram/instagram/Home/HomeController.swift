@@ -62,8 +62,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     @objc fileprivate func handleCamera(){
         let cameraController = CameraController()
-        navigationController?.pushViewController(cameraController, animated: true)
-//        present(cameraController, animated: true, completion: nil)
+        cameraController.modalPresentationStyle = .fullScreen
+//        navigationController?.pushViewController(cameraController, animated: true)
+        present(cameraController, animated: true, completion: nil)
     }
     fileprivate func fetchPosts(){
         guard let uid = Auth.auth().currentUser?.uid else {return}

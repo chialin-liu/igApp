@@ -27,7 +27,7 @@ class CameraController: UIViewController {
         capturePhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         view.addSubview(dismissButton)
-        dismissButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 50)
+        dismissButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 50)
     }
     @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
@@ -62,7 +62,8 @@ class CameraController: UIViewController {
         }
         
         //3. setup output preview
-        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        let previewLayer = AVCaptureVideoPreviewLayer()
+        previewLayer.session = captureSession
         previewLayer.frame = view.frame
         view.layer.addSublayer(previewLayer)
         

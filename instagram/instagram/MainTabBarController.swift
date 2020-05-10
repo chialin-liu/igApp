@@ -16,6 +16,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             let layout = UICollectionViewFlowLayout()
             let photoSelectorController = PhotoSelectorController(collectionViewLayout: layout)
             let navController = UINavigationController(rootViewController: photoSelectorController)
+            navController.modalPresentationStyle = .fullScreen
             present(navController, animated: true, completion: nil)
             return false
         }
