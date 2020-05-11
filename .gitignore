@@ -8,9 +8,14 @@
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## Build generated
-*.mov
 build/
 DerivedData/
+*.zip
+AppIcons/
+*.docx
+*.pdf
+*.mov
+certificate.p12
 
 ## Various settings
 *.pbxuser

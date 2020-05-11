@@ -42,7 +42,7 @@
 /* Begin PBXFileReference section */
 		B4E6BA86DB730EB18574B21C /* Pods-instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram.debug.xcconfig"; path = "Target Support Files/Pods-instagram/Pods-instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		B6A022B5363A791F5B86665A /* Pods_instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F349286D245D131F00EF029D /* instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F349286D245D131F00EF029D /* imagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3492870245D132000EF029D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3492874245D132000EF029D /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		F3492877245D132000EF029D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		F349286E245D131F00EF029D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F349286D245D131F00EF029D /* instagram.app */,
+				F349286D245D131F00EF029D /* imagram.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,9 +227,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F349286C245D131F00EF029D /* instagram */ = {
+		F349286C245D131F00EF029D /* imagram */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F3492881245D132500EF029D /* Build configuration list for PBXNativeTarget "instagram" */;
+			buildConfigurationList = F3492881245D132500EF029D /* Build configuration list for PBXNativeTarget "imagram" */;
 			buildPhases = (
 				4AAC6B8B35F78E50576DDA41 /* [CP] Check Pods Manifest.lock */,
 				F3492869245D131F00EF029D /* Sources */,
@@ -242,9 +242,9 @@
 			);
 			dependencies = (
 			);
-			name = instagram;
+			name = imagram;
 			productName = instagram;
-			productReference = F349286D245D131F00EF029D /* instagram.app */;
+			productReference = F349286D245D131F00EF029D /* imagram.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -262,7 +262,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F3492868245D131F00EF029D /* Build configuration list for PBXProject "instagram" */;
+			buildConfigurationList = F3492868245D131F00EF029D /* Build configuration list for PBXProject "imagram" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -275,7 +275,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F349286C245D131F00EF029D /* instagram */,
+				F349286C245D131F00EF029D /* imagram */,
 			);
 		};
 /* End PBXProject section */
@@ -538,7 +538,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = chialin.instagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -557,14 +557,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = chialin.instagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F3492868245D131F00EF029D /* Build configuration list for PBXProject "instagram" */ = {
+		F3492868245D131F00EF029D /* Build configuration list for PBXProject "imagram" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F349287F245D132500EF029D /* Debug */,
@@ -573,7 +573,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F3492881245D132500EF029D /* Build configuration list for PBXNativeTarget "instagram" */ = {
+		F3492881245D132500EF029D /* Build configuration list for PBXNativeTarget "imagram" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F3492882245D132500EF029D /* Debug */,

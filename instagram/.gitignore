@@ -10,6 +10,11 @@
 ## Build generated
 build/
 DerivedData/
+*.zip
+AppIcons/
+*.doc
+*.pdf
+certificate
 
 ## Various settings
 *.pbxuser
