@@ -1,3 +1,14 @@
+## Screen shots
+![image](https://github.com/chialin-liu/igApp/blob/master/screenshot/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-05-30%20at%2009.16.26.png)
+![image](https://github.com/chialin-liu/igApp/blob/master/screenshot/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-05-30%20at%2009.16.20.png)
+![image](https://github.com/chialin-liu/igApp/blob/master/screenshot/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-05-30%20at%2009.10.41.png)
+![image](https://github.com/chialin-liu/igApp/blob/master/screenshot/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-05-30%20at%2009.10.52.png)
+![image](https://github.com/chialin-liu/igApp/blob/master/screenshot/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-05-30%20at%2009.11.49.png)
+![image](https://github.com/chialin-liu/igApp/blob/master/screenshot/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-05-30%20at%2009.12.04.png)
+![image](https://github.com/chialin-liu/igApp/blob/master/screenshot/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-05-30%20at%2009.12.26.png)
+![image](https://github.com/chialin-liu/igApp/blob/master/screenshot/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-05-30%20at%2009.15.04.png)
+![image](https://github.com/chialin-liu/igApp/blob/master/screenshot/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-05-30%20at%2009.15.21.png)
+
 ## Application: 
 
 I imitate to develop the instagram app,  so that this app can function correctly with firebase integration. Furthermore, I programmed using swift 5.1 ,xcode 11.3 without using any storyboard and demo the app using iPhone 11.
