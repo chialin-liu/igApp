@@ -38,6 +38,35 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         fetchUser()
         
     }
+    var isFinishedPaging = false
+    func paginatePosts() {
+        guard let uid = user?.uid else { return }
+        print("User id", uid)
+        let ref = Database.database().reference().child("posts").child(uid)
+        var query = ref.queryOrdered(byChild: "creationDate")
+        if posts.count > 0 {
+            let value = posts.last?.creationDate.timeIntervalSince1970
+            query = query.queryEnding(atValue: value)
+        }
+        query.queryLimited(toLast: 4).observeSingleEvent(of: .value) { (snapshot) in
+            guard var allOjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
+            allOjects.reverse()
+            if allOjects.count < 4 {
+                self.isFinishedPaging = true
+            }
+            if self.posts.count > 0 && allOjects.count > 0 {
+                allOjects.removeFirst()
+            }
+            guard let user = self.user else { return }
+            for obj in allOjects {
+                guard let dictionary = obj.value as? [String: Any] else { return }
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = obj.key
+                self.posts.append(post)
+            }
+            self.collectionView.reloadData()
+        }
+    }
     fileprivate func fetchOrderedPosts(){
         guard let uid = self.user?.uid else {return}
         let ref = Database.database().reference().child("posts").child(uid)
@@ -76,6 +105,9 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         return 1
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.item == posts.count - 1 && !isFinishedPaging {
+            paginatePosts()
+        }
         if isGridView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? UserProfilePhotoCell else {return UICollectionViewCell()}
             cell.post = posts[indexPath.item]
@@ -121,7 +153,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             self.user = user
             self.navigationItem.title = self.user?.username
             self.collectionView.reloadData()
-            self.fetchOrderedPosts()
+//            self.fetchOrderedPosts()
+            self.paginatePosts()
         }
     }
 }

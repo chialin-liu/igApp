@@ -11,8 +11,8 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
-import FacebookLogin
-import FBSDKLoginKit
+//import FacebookLogin
+//import FBSDKLoginKit
 class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     let buttonAddPhoto : UIButton = {
         let button = UIButton(type: .system)
